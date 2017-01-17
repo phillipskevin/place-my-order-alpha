@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/phillipskevin/place-my-order-alpha.png?branch=master)](https://travis-ci.org/phillipskevin/place-my-order-alpha)
+
 # place-my-order
 
 Welcome to the place-my-order DoneJS application!
