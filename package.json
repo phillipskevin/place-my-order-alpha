@@ -56,6 +56,7 @@
     "place-my-order-assets": "^0.1.7",
     "steal": "^1.0.5",
     "steal-less": "^1.0.2",
+    "steal-socket.io": "^4.0.9",
     "steal-stache": "^3.0.4"
   },
   "devDependencies": {

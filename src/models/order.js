@@ -2,6 +2,7 @@ import DefineMap from 'can-define/map/';
 import DefineList from 'can-define/list/';
 import superMap from 'can-connect/can/super-map/';
 import tag from 'can-connect/can/tag/';
+import io from 'steal-socket.io';
 
 const Item = DefineMap.extend({
   price: 'number'
@@ -63,6 +64,12 @@ export const orderConnection = superMap({
   List: Order.List,
   name: 'order'
 });
+
+const socket = io();
+
+socket.on('orders created', order => orderConnection.createInstance(order));
+socket.on('orders updated', order => orderConnection.updateInstance(order));
+socket.on('orders removed', order => orderConnection.destroyInstance(order));
 
 tag('order-model', orderConnection);
 
