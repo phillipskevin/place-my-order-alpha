@@ -3,6 +3,7 @@ import DefineList from 'can-define/list/';
 import superMap from 'can-connect/can/super-map/';
 import tag from 'can-connect/can/tag/';
 import io from 'steal-socket.io';
+import baseUrl from '../service-base-url';
 
 const Item = DefineMap.extend({
   price: 'number'
@@ -58,14 +59,14 @@ Order.List = DefineList.extend({
 });
 
 export const orderConnection = superMap({
-  url: '/api/orders',
+  url: baseUrl + '/api/orders',
   idProp: '_id',
   Map: Order,
   List: Order.List,
   name: 'order'
 });
 
-const socket = io();
+const socket = io(baseUrl);
 
 socket.on('orders created', order => orderConnection.createInstance(order));
 socket.on('orders updated', order => orderConnection.updateInstance(order));
