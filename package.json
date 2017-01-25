@@ -35,7 +35,12 @@
       "done-component",
       "steal-less",
       "steal-stache"
-    ]
+    ],
+    "envs": {
+      "server-production": {
+        "renderingBaseURL": "dist"
+      }
+    }
   },
   "dependencies": {
     "bit-tabs": "^1.0.0-alpha.0",
