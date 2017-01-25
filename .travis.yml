@@ -1,7 +1,25 @@
 language: node_js
 node_js: node
 addons:
-  firefox: "latest"
+  firefox: latest
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
+  - 'export DISPLAY=:99.0'
+  - sh -e /etc/init.d/xvfb start
+before_deploy:
+  - git config --global user.email "me@example.com"
+  - git config --global user.name "PMO deploy bot"
+  - node build
+  - git add dist/ --force
+  - git commit -m "Updating build."
+  - node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+deploy:
+  skip_cleanup: true
+  provider: heroku
+  app: glacial-wave-52190
+  api_key:
+    - secure: >-
+        GBSZVBjFnHy/V5d8iUFnfwjMnzl7uzs02fF+TP3KBZwLMmsbbCb8YXbsWMzzyVR9JqxBKb81qx9bo68BwjAJuOAAS5HxOyEf7Mq0HdIgVUI0sV2olz4SR+WW5IJvyQukEZUn/EByEltclwArFHRo11dE1RKr+iT4zKx33ke9+GH0O6CIukABxJ861A+AtZuf++nyuja6rUJ+xr5zR1OGUtayDAsVwvpw+gvL6wXHivGHabjMtvIHRE7WzIuh2Lej1rx9MoNSACqyFZjv4tefrocGs3QkDfs7l+GqxCB5o2QnxuUDfKAWZ/ZgaKamIDyIx/CgO56dx71tXyU8xlb8Z1M5OMfBMB3BOZ+AIyfLZZnaAkDQ4Q5egYNPKLUhXu3uJOhZ5+EGcJooInlB1b+YXP2Ku2sJ92qO9x3rKTqPh0uomsj7B3qJNwjNtZQfrbjDqscJbSKWeVt/YLJpoedX5k/L3BGKoKHAWYvfBzLbQGxIZBTKhEec+hhH9ETW4KpQwXEPAbW8cKwzU60HXQEiyI6irxFBOiP5gl9tOYTOy1TpoxB/iG9It69dUkjwcTBcwkxeakXKlrXK/xY4AKXBJGYl/MkdlbcYyR6Xqn07pWoOv8asHk2Y4MvecVYoAaBEd9csDWZ6O1OXn7tUi+ATlNm98Lw6GYZoe7ZeMywEAE0=
+env:
+  global:
+    - secure: >-
+        KI1g3wYGf0lla6pp/ToYdaxH4Lx2V5h0WbIT8MuMzC8MSXha5keqJqNbqYNRlRP9A8A53Q0gkBPUuuSJorM6IvOXlXsteaflQWMGNPn6a47TXR/Hi2IaJRDea3mDgufjGD1pnfV8tD8UvmE18gwg4Ktkv3+7VbbAOCbcncV2MawIMqK/qPZfIchoVues2oRfuZj0DgdF8TPkGeZZf4FAnSu1Axu0Q5a3Mocx3FDS2PFb+KuuYmQMTIBvROMw3jrLbxUaIqQDtxUY80WrqnvD+PU8dFUY+1JerWbNSu+XIraO37d2PWxp70sr4BiYOCvzdmibBEomDdarqmakbRE0UlkdPIhLnVYgX56KRp3TUFi4almZvFvl69EON7qD2oCKMwV4usk4fQEOrgdnYOaD3ZbKIVJjd3Kk9Cf+WtdKT1Rz/WbxqWkBp+iWBbGouTlH0B4xinqxohtpjtvg7e9XrrKQV/Bjy8WhcBOwb3X+zLtAY040aJU4QLyEeooRCiIwJMWq6yzUdpRGLpLoGX2Gkb72fkcg195ioQ0JLngS9S5PZ3SeaeM8Ymefo+JGeCEyDa3NQlfXegbKZR1nMRWC/1T8/Ra8Fs0VmpeHzmO9C5Qh1ez4c2flZ/sYxpzdnKHb2uxP1jbisUSStXT7DZ5GxaDOD+l+ZJgkL1LVuKCRUkE=
