@@ -14,7 +14,9 @@
     "start": "done-serve --proxy http://localhost:7070 --port 8080",
     "develop": "done-serve --develop --proxy http://localhost:7070 --port 8080",
     "document": "documentjs",
-    "build": "node build"
+    "build": "node build",
+    "deploy": "firebase deploy",
+    "deploy:ci": "firebase deploy --token \"$FIREBASE_TOKEN\""
   },
   "main": "production.html",
   "files": [
@@ -38,7 +40,7 @@
     ],
     "envs": {
       "server-production": {
-        "renderingBaseURL": "dist"
+        "renderingBaseURL": "https://pmo-alpha-kphillips86.firebaseapp.com/"
       }
     }
   },
@@ -70,6 +72,7 @@
     "documentjs": "^0.4.4",
     "donejs-cli": "^1.0.0-alpha.2",
     "donejs-deploy": "^0.4.2",
+    "firebase-tools": "^3.2.1",
     "funcunit": "^3.1.0",
     "steal-cordova": "^0.1.5",
     "steal-nw": "^0.1.5",
